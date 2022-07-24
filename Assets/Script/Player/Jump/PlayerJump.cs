@@ -22,13 +22,15 @@ public class PlayerJump : AgentJump
     {
         base.Update();
 
-        if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             Jump(1f + _acceleration);
             JumpRenewal();
         }
         if (Input.GetKey(KeyCode.C))
         {
+
+
             _curTime += Time.deltaTime;
             if (_curTime < _timer)
                 return;

@@ -7,7 +7,7 @@ public class PlayerAttack : AgentMeleeAttack
     [SerializeField]
     private GameObject _bullet = null;
     [SerializeField]
-    private bool _isAutoShoot = true;
+    private bool _isAutoShoot = false;
     [SerializeField]
     private float _reloadTime = 0.2f;
     [SerializeField]
@@ -39,7 +39,7 @@ public class PlayerAttack : AgentMeleeAttack
                 {
                     Attack();
 
-                    SpawnBullet();
+                    //SpawnBullet();
 
                     _bulletCnt++;
                     _timer = 0f;
@@ -52,7 +52,7 @@ public class PlayerAttack : AgentMeleeAttack
             {
                 Attack();
 
-                SpawnBullet();
+                //SpawnBullet();
             }
         }
 

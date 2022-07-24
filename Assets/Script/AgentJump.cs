@@ -103,8 +103,11 @@ public class AgentJump : MonoBehaviour
     {
         if (_isJumpable == false)
             return;
-        if (_isground == false && _currentJumpCnt >= _jumpCount)
+        if (_isground == false && _currentJumpCnt > _jumpCount)
             return;
+        if (_currentJumpCnt == 1) return;
+
+        Debug.Log(_currentJumpCnt);
 
         _isFirstJump = false;
         float jumpPow = _currentJumpCnt > 0 ? _jumpPower * _secondJumpPower * accelerationJumpPower : _jumpPower * accelerationJumpPower;
@@ -126,7 +129,7 @@ public class AgentJump : MonoBehaviour
     {
         if (_isJumpable == false)
             return;
-        if (_isground == false && _currentJumpCnt > _jumpCount)
+        if (_isground == false && _currentJumpCnt >= _jumpCount)
             return;
 
         if (_currentJumpCnt > 1)
