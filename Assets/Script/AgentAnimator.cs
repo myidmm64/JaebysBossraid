@@ -5,6 +5,12 @@ using UnityEngine;
 public class AgentAnimator : MonoBehaviour
 {
     private Animator _animator = null;
+    [SerializeField]
+    private RuntimeAnimatorController _whiteAnimator = null;
+    [SerializeField]
+    private RuntimeAnimatorController _redAnimator = null;
+    [SerializeField]
+    private GameObject _effect = null;
 
     private void Awake()
     {
@@ -60,5 +66,32 @@ public class AgentAnimator : MonoBehaviour
         _animator.SetBool("Dash", false);
         _animator.SetBool("Move", false);
         _animator.SetBool("IsGround", true);
+    }
+
+    public void GeneAnimation()
+    {
+        _animator.SetTrigger("Gene");
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            GeneAnimation();
+        }
+    }
+
+    public void AnimatorRedToWhite()
+    {
+        _animator.runtimeAnimatorController = _whiteAnimator;
+    }
+    public void AnimatorWhiteToRed()
+    {
+        _animator.runtimeAnimatorController = _redAnimator;
+    }
+    public void EffectSummon()
+    {
+        WiatEndDestory w = PoolManager.Instance.Pop("GenerateAnimation") as WiatEndDestory;
+        w.transform.position = transform.position;
     }
 }
