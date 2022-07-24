@@ -32,9 +32,22 @@ public class AgentAnimator : MonoBehaviour
         _animator.SetBool("IsGround", value);
     }
 
-    public void AttackAnimation()
+    public void AttackAnimation(int cnt)
     {
-        _animator.SetTrigger("Attack");
+        switch(cnt)
+        {
+            case 0:
+                _animator.SetTrigger("Attack");
+                break;
+            case 1:
+                _animator.SetTrigger("Attack1");
+                break;
+            case 2:
+                _animator.SetTrigger("Attack2");
+                break;
+            default:
+                break;
+        }
     }
 
     public void DashAnimation()

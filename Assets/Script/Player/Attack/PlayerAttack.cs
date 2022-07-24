@@ -46,12 +46,14 @@ public class PlayerAttack : AgentMeleeAttack
                 }
             }
         }
+
+
         else
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
                 Attack();
-
+                _attackCnt = (_attackCnt + 1) % 3;
                 //SpawnBullet();
             }
         }

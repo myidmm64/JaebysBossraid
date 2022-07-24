@@ -9,6 +9,10 @@ public class PlayerMovement : AgentMovement
 
     private bool _filp = false;
 
+    private float _hori;
+    private float _verti;
+    private Vector2 _dashDir = Vector2.zero;
+
     protected override void Update()
     {
         base.Update();
@@ -21,18 +25,35 @@ public class PlayerMovement : AgentMovement
             _moveDir = new Vector2(_moveDir.x, -15f);
         }
 
-
-        if(Input.GetKeyDown(KeyCode.Z))
+        _hori = Input.GetAxisRaw("Horizontal");
+        _verti = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             _filp = _visualSpriteTrm.localScale.x < 0f;
+            _dashDir.x = _hori;
+            _dashDir.y = _verti;
 
             if(_filp)
             {
-                Dash(Vector2.left);
+                if(_dashDir == Vector2.zero)
+                {
+                    Dash(Vector2.left);
+                }
+                else
+                {
+                    Dash(_dashDir.normalized);
+                }
             }
             else
             {
-                Dash(Vector2.right);
+                if (_dashDir == Vector2.zero)
+                {
+                    Dash(Vector2.right);
+                }
+                else
+                {
+                    Dash(_dashDir.normalized);
+                }
             }
         }
     }
